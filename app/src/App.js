@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { initialState, reducer } from './reducers';
 
 //components
-import { TodoList } from './components';
+import { TodoList, AddButton } from './components';
 
 const Body = styled.div`
     padding: 40px;
@@ -18,8 +18,9 @@ const Container = styled.div`
     box-shadow: 2px 2px 10px 2px rgba(32, 32, 32, 0.25);
     background-color: white;
     padding: 0px 10px;
-    max-height: 85vh;
+    height: 85vh;
     overflow: scroll;
+    position: relative;
 
     ::-webkit-scrollbar {
         width: 0px; /* Remove scrollbar space */
@@ -37,6 +38,7 @@ function App() {
             <Container>
                 <h2>All Tasks</h2>
                 <TodoList todos={state.todos} dispatch={dispatch} />
+                <AddButton />
             </Container>
         </Body>
     );

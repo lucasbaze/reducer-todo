@@ -6,7 +6,7 @@ const TodoContainer = styled.div`
     min-height: 40px;
     border-radius: 40px;
     box-shadow: 1px 1px 10px 3px rgba(224, 224, 224, 1);
-    padding: 0px 15px;
+    padding: 5px 20px;
     margin: 15px 0 0 0;
 
     display: flex;

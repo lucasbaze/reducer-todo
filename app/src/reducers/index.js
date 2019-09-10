@@ -18,6 +18,42 @@ export const initialState = {
             dueDate: '9/11/2019',
             complete: true,
         },
+        {
+            id: 'asdflkj242490Eidc',
+            task: 'Eat Cake',
+            dueDate: '9/11/2019',
+            complete: true,
+        },
+        {
+            id: 'asdflkj242490Eidc',
+            task: 'Eat Cake',
+            dueDate: '9/11/2019',
+            complete: true,
+        },
+        {
+            id: 'asdflkj242490Eidc',
+            task: 'Eat Cake',
+            dueDate: '9/11/2019',
+            complete: true,
+        },
+        {
+            id: 'asdflkj242490Eidc',
+            task: 'Eat Cake',
+            dueDate: '9/11/2019',
+            complete: true,
+        },
+        {
+            id: 'asdflkj242490Eidc',
+            task: 'Eat Cake',
+            dueDate: '9/11/2019',
+            complete: true,
+        },
+        {
+            id: 'asdflkj242490Eidc',
+            task: 'Eat Cake',
+            dueDate: '9/11/2019',
+            complete: true,
+        },
     ],
 };
 
