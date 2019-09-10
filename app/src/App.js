@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useReducer } from 'react';
+import styled from 'styled-components';
+
+//reducers
+import { initialState, reducer } from './reducers';
+
+//components
+import { TodoList } from './components';
+
+const Body = styled.div`
+    padding: 40px;
+`;
+
+const Container = styled.div`
+    max-width: 400px;
+    margin: auto auto;
+    border-radius: 15px;
+    box-shadow: 2px 2px 10px 2px rgba(32, 32, 32, 0.25);
+    background-color: white;
+    padding: 0px 10px;
+    max-height: 85vh;
+    overflow: scroll;
+
+    ::-webkit-scrollbar {
+        width: 0px; /* Remove scrollbar space */
+        background: transparent; /* Optional: just make scrollbar invisible */
+    }
+`;
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    console.log(state);
+
+    return (
+        <Body>
+            <Container>
+                <h2>All Tasks</h2>
+                <TodoList todos={state.todos} dispatch={dispatch} />
+            </Container>
+        </Body>
+    );
 }
 
 export default App;
