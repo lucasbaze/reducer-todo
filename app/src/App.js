@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+import 'semantic-ui-css/semantic.min.css';
 import styled from 'styled-components';
 
 //reducers
@@ -9,6 +10,8 @@ import { TodoList, AddButton } from './components';
 
 const Body = styled.div`
     padding: 40px;
+    background: linear-gradient(#50a5f4, #5b65e7);
+    height: 100vh;
 `;
 
 const Container = styled.div`
@@ -28,6 +31,12 @@ const Container = styled.div`
     }
 `;
 
+const Header = styled.h2`
+    text-align: center;
+    padding: 25px 0px;
+    font-weight: 400;
+`;
+
 function App() {
     const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -36,9 +45,9 @@ function App() {
     return (
         <Body>
             <Container>
-                <h2>All Tasks</h2>
+                <Header>All Tasks</Header>
                 <TodoList todos={state.todos} dispatch={dispatch} />
-                <AddButton />
+                <AddButton dispatch={dispatch} />
             </Container>
         </Body>
     );

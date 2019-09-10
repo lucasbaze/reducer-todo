@@ -1,4 +1,4 @@
-const generateID = () => {
+const generateId = () => {
     return Math.random()
         .toString(24)
         .slice(2, 15);
@@ -12,57 +12,25 @@ export const initialState = {
             dueDate: '9/10/2019',
             complete: false,
         },
-        {
-            id: 'asdflkj242490Eidc',
-            task: 'Eat Cake',
-            dueDate: '9/11/2019',
-            complete: true,
-        },
-        {
-            id: 'asdflkj242490Eidc',
-            task: 'Eat Cake',
-            dueDate: '9/11/2019',
-            complete: true,
-        },
-        {
-            id: 'asdflkj242490Eidc',
-            task: 'Eat Cake',
-            dueDate: '9/11/2019',
-            complete: true,
-        },
-        {
-            id: 'asdflkj242490Eidc',
-            task: 'Eat Cake',
-            dueDate: '9/11/2019',
-            complete: true,
-        },
-        {
-            id: 'asdflkj242490Eidc',
-            task: 'Eat Cake',
-            dueDate: '9/11/2019',
-            complete: true,
-        },
-        {
-            id: 'asdflkj242490Eidc',
-            task: 'Eat Cake',
-            dueDate: '9/11/2019',
-            complete: true,
-        },
-        {
-            id: 'asdflkj242490Eidc',
-            task: 'Eat Cake',
-            dueDate: '9/11/2019',
-            complete: true,
-        },
     ],
 };
 
 export const reducer = (state, action) => {
     switch (action.type) {
         case 'add_todo':
+            let { task, dueDate } = action.payload;
+
+            let newTodo = {
+                task,
+                dueDate,
+                id: generateId(),
+                complete: false,
+            };
+
+            state.todos.push(newTodo);
+
             return {
                 ...state,
-                todos: action.payload || null,
             };
         default:
             return state;
