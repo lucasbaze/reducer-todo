@@ -1,29 +1,32 @@
 import React from 'react';
 
 import styled from 'styled-components';
+import posed from 'react-pose';
+
+import { Button } from 'semantic-ui-react';
 
 const TodoContainer = styled.div`
     min-height: 40px;
     border-radius: 40px;
-    box-shadow: 1px 1px 10px 3px rgba(224, 224, 224, 1);
-    padding: 5px 20px;
+    box-shadow: ${props =>
+        props.complete
+            ? '1px 1px 10px 3px rgba(204, 227, 205, 1)'
+            : '1px 1px 10px 3px rgba(224, 224, 224, 1)'};
+    padding: 10px 10px;
     margin: 15px 0 0 0;
 
     display: flex;
     justify-content: space-between;
+    align-items: center;
+
+    p, h4{
+        margin: 0
+        padding: 0
+    }
 `;
 
-const Circle = styled.div`
-    width: 30px;
-    height: 30px;
-    border-radius: 20px;
-    background-color: red;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    :hover {
-        cursor: pointer;
-    }
+const CompleteButton = styled(Button)`
+    border: green;
 `;
 
 const Actions = styled.div`
@@ -35,19 +38,21 @@ const Actions = styled.div`
 const Todo = ({ todo, dispatch }) => {
     return (
         <TodoContainer complete={todo.complete}>
-            <p>{todo.task}</p>
+            <h4 style={{ marginLeft: 10 }}>{todo.task}</h4>
             <Actions>
-                <p>{todo.dueDate}</p>
-                <Circle onClick={() => alert('clicked')}>
-                    <span style={{ color: 'white', fontWeight: 'bold' }}>
-                        Y
-                    </span>
-                </Circle>
-                <Circle onClick={() => alert('clicked')}>
-                    <span style={{ color: 'white', fontWeight: 'bold' }}>
-                        X
-                    </span>
-                </Circle>
+                <p style={{ marginRight: 7 }}>{todo.dueDate}</p>
+                <CompleteButton
+                    circular
+                    color={todo.complete ? 'green' : 'grey'}
+                    icon={todo.complete ? 'smile' : 'check'}
+                    complete={todo.complete}
+                    onClick={() =>
+                        dispatch({
+                            type: 'toggle_todo',
+                            payload: todo.id,
+                        })
+                    }
+                />
             </Actions>
         </TodoContainer>
     );

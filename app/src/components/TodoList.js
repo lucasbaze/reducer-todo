@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import posed, { PoseGroup } from 'react-pose';
 
 import Todo from './Todo';
 
-const TodoListContainer = styled.div`
+const TodoListContainer = styled.ul`
     padding: 0px 15px;
 `;
 
@@ -12,7 +13,9 @@ const TodoList = ({ todos, dispatch }) => {
         <TodoListContainer>
             {todos &&
                 todos.map(todo => {
-                    return <Todo todo={todo} dispatch={dispatch} />;
+                    return (
+                        <Todo key={todo.id} todo={todo} dispatch={dispatch} />
+                    );
                 })}
         </TodoListContainer>
     );

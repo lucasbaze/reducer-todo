@@ -32,6 +32,30 @@ export const reducer = (state, action) => {
             return {
                 ...state,
             };
+        case 'toggle_todo':
+            let id = action.payload;
+
+            let todo =
+                state.todos[state.todos.findIndex(item => item.id == id)];
+
+            todo.complete = !todo.complete;
+
+            return {
+                ...state,
+            };
+
+        case 'toggle_filter':
+            let newState =
+                state.todos &&
+                state.todos.filter(item => {
+                    return item.complete !== true;
+                });
+
+            return {
+                ...state,
+                todos: newState,
+            };
+
         default:
             return state;
     }

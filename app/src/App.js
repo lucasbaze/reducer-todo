@@ -7,6 +7,7 @@ import { initialState, reducer } from './reducers';
 
 //components
 import { TodoList, AddButton } from './components';
+import { Button } from 'semantic-ui-react';
 
 const Body = styled.div`
     padding: 40px;
@@ -24,6 +25,7 @@ const Container = styled.div`
     height: 85vh;
     overflow: scroll;
     position: relative;
+    text-align: center;
 
     ::-webkit-scrollbar {
         width: 0px; /* Remove scrollbar space */
@@ -33,7 +35,7 @@ const Container = styled.div`
 
 const Header = styled.h2`
     text-align: center;
-    padding: 25px 0px;
+    padding: 25px 0 0 0;
     font-weight: 400;
 `;
 
@@ -46,6 +48,10 @@ function App() {
         <Body>
             <Container>
                 <Header>All Tasks</Header>
+                <Button
+                    content="Filter Completed"
+                    onClick={() => dispatch({ type: 'toggle_filter' })}
+                />
                 <TodoList todos={state.todos} dispatch={dispatch} />
                 <AddButton dispatch={dispatch} />
             </Container>

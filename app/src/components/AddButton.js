@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 import styled from 'styled-components';
-import posed from 'react-pose';
-import { Modal, Form } from 'semantic-ui-react';
+import posed, { PoseGroup } from 'react-pose';
+import { Modal, Form, Icon } from 'semantic-ui-react';
 
 //hooks
 import { useForm } from '../hooks';
@@ -10,7 +10,7 @@ import { useForm } from '../hooks';
 const AddButtonContainer = styled.div`
     position: fixed;
     left: calc(50vw - 35px);
-    bottom: 25px;
+    bottom: calc(7vh);
     height: 70px;
     width: 70px;
     background-color: white;
@@ -26,11 +26,11 @@ const AddButtonContainer = styled.div`
 `;
 
 const FormAnimation = posed.div({
-    visible: { opacity: 1 },
-    hidden: { opacity: 0 },
+    enter: { opacity: 1 },
+    exit: { opacity: 0 },
 });
 
-const FormContainer = styled(FormAnimation)`
+const FormContainer = styled.div`
     width: 300px;
     position: fixed;
     left: calc(50vw - 150px);
@@ -41,7 +41,7 @@ const FormContainer = styled(FormAnimation)`
     box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, 0.3);
 `;
 
-const NewTodoForm = ({ open, dispatch, setOpen }) => {
+const NewTodoForm = ({ dispatch, setOpen, enterPose, exitPose }) => {
     const [formValue, handleChange, submitHandler] = useForm(
         { task: '', dueDate: '' },
         formValues =>
@@ -55,7 +55,7 @@ const NewTodoForm = ({ open, dispatch, setOpen }) => {
     );
 
     return (
-        <FormContainer pose={open ? 'visible' : 'hidden'}>
+        <FormContainer enterPose={enterPose} exitPose={exitPose}>
             <Form
                 onSubmit={() => {
                     submitHandler();
@@ -85,12 +85,27 @@ const NewTodoForm = ({ open, dispatch, setOpen }) => {
 const AddButton = ({ dispatch }) => {
     const [open, setOpen] = useState(false);
 
+    console.log(open);
+
     return (
         <>
             <AddButtonContainer onClick={() => setOpen(!open)}>
-                +
+                <Icon
+                    name={!open ? 'plus' : 'delete'}
+                    style={{ marginLeft: 5 }}
+                />
             </AddButtonContainer>
-            <NewTodoForm open={open} dispatch={dispatch} setOpen={setOpen} />
+            <PoseGroup>
+                {open ? (
+                    <FormAnimation key="form">
+                        <NewTodoForm
+                            key="addform"
+                            dispatch={dispatch}
+                            setOpen={setOpen}
+                        />
+                    </FormAnimation>
+                ) : null}
+            </PoseGroup>
         </>
     );
 };
